@@ -27,3 +27,29 @@ O Sistema de Gestão Financeira LSJ é uma solução completa para a administra�
 - Conciliação bancária
 - Geração de relatórios oficiais
 - Interface intuitiva e responsiva
+
+## Configuração do Ambiente Virtual (Windows/PowerShell)
+
+Para criar e ativar o ambiente virtual Python do projeto:
+
+1. Certifique-se de que o Python 3.11+ está instalado:  
+   ```powershell
+   python --version
+   ```
+
+2. Crie o ambiente virtual dentro da pasta do projeto:  
+   ```powershell
+   py -3 -m venv .venv
+   ```
+
+3. Ative o ambiente virtual:  
+   ```powershell
+   .venv\Scripts\Activate.ps1
+   ```
+
+4. Valide que o ambiente está ativo (o prompt exibirá `(.venv)` no início) e que o `pip` está vinculado ao venv:  
+   ```powershell
+   python -m pip -V
+   ```
+
+> Observação: a pasta `.venv` **não deve ser versionada** (já está listada no `.gitignore`).
