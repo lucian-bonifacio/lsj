@@ -1,0 +1,18 @@
+# Dependências principais do backend LSJ
+
+# Framework web
+fastapi~=0.115.0
+uvicorn[standard]~=0.30.0
+
+# ORM e banco de dados
+sqlalchemy~=2.0.29
+alembic~=1.13.1
+psycopg[binary]>=3.2,<3.3
+
+
+# Validação de dados
+pydantic>=2.6.3
+
+# Utilitários
+python-dotenv~=1.0.1
+loguru~=0.7.2

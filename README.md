@@ -32,7 +32,7 @@ O Sistema de Gestão Financeira LSJ é uma solução completa para a administra�
 
 Para criar e ativar o ambiente virtual Python do projeto:
 
-1. Certifique-se de que o Python 3.11+ está instalado:  
+1. Certifique-se de que o Python 3.11+ está instalado (versão atual: Python 3.13.3):  
    ```powershell
    python --version
    ```
@@ -53,3 +53,39 @@ Para criar e ativar o ambiente virtual Python do projeto:
    ```
 
 > Observação: a pasta `.venv` **não deve ser versionada** (já está listada no `.gitignore`).
+
+## Instalação de dependências (Windows)
+
+Após ativar o ambiente virtual, instale as dependências do backend:
+
+1. Navegue até a pasta do projeto:
+   ```powershell
+   cd C:\caminho\para\lsj
+   ```
+
+2. Instale as dependências do backend:
+   ```powershell
+   pip install -r backend\requirements.txt
+   ```
+
+3. Verifique se as dependências foram instaladas corretamente:
+   ```powershell
+   pip list
+   ```
+
+## Executando o Backend
+
+Para iniciar o servidor de desenvolvimento com hot-reload:
+
+1. Certifique-se de que o ambiente virtual está ativado
+
+2. Execute o servidor Uvicorn a partir da raiz do projeto:
+   ```powershell
+   uvicorn app.main:app --reload --port 8000 --app-dir backend
+   ```
+
+3. Acesse a API em [http://localhost:8000](http://localhost:8000)
+
+4. A documentação interativa está disponível em:
+   - Swagger UI: [http://localhost:8000/docs](http://localhost:8000/docs)
+   - ReDoc: [http://localhost:8000/redoc](http://localhost:8000/redoc)
