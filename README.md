@@ -89,3 +89,32 @@ Para iniciar o servidor de desenvolvimento com hot-reload:
 4. A documentação interativa está disponível em:
    - Swagger UI: [http://localhost:8000/docs](http://localhost:8000/docs)
    - ReDoc: [http://localhost:8000/redoc](http://localhost:8000/redoc)
+
+
+## 🐳 Execução com Docker
+
+Este projeto oferece uma maneira alternativa de rodar o backend usando Docker, ideal para padronizar o ambiente de desenvolvimento entre diferentes máquinas.
+
+### 🔧 Pré-requisitos
+
+- Docker Desktop instalado e rodando
+- Terminal com suporte a comandos `docker`
+
+### 🚀 Passo a passo
+
+1. Acesse a pasta `backend`:
+   ```bash
+   cd backend
+   ```
+
+2. Construa a imagem:
+   ```bash
+   docker build -t lsj-backend-dev .
+   ```
+
+3. Execute o container:
+   ```bash
+   docker run -it --rm -p 8000:8000 -v $(pwd)/app:/app/app lsj-backend-dev uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+   ```
+
+

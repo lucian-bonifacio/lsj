@@ -142,13 +142,6 @@ cython_debug/
 .pytest_cache
 __pycache__
 
-# Docker específico
-.dockerignore
-Dockerfile*
-docker-compose*
-docker/
-*.dockerfile
-.docker/
 
 # VSCode específico
 .vscode/*
