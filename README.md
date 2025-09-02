@@ -1,120 +1,143 @@
-# LSJ — Sistema de Gestão Financeira
+# 🧾 LSJ — Sistema de Gestão Financeira
 
-## Sobre o Projeto
+Sistema completo para administração financeira do **Lar de São José**, com foco em **conciliação bancária**, **validação automatizada** e **emissão de relatórios oficiais**. Desenvolvido com tecnologias modernas, é uma solução robusta e escalável para o setor financeiro.
 
-O Sistema de Gestão Financeira LSJ é uma solução completa para a administração financeira do Lar de São José, oferecendo funcionalidades de conciliação bancária e geração de relatórios oficiais. Esta plataforma foi desenvolvida para otimizar processos financeiros e garantir uma gestão transparente e eficiente.
+---
 
-## Stack Tecnológica
+## 📦 Tecnologias Utilizadas
 
 ### Backend
-- **Python**
-  - FastAPI (Framework web de alta performance)
-  - SQLAlchemy (ORM para interação com banco de dados)
-  - Pydantic (Validação de dados e configurações)
-  - Alembic (Migrações de banco de dados)
+- **Python** 3.11+
+  - FastAPI (API web assíncrona)
+  - SQLAlchemy (ORM para PostgreSQL)
+  - Pydantic (Validação de dados)
+  - Alembic (Migrações de banco)
 
 ### Banco de Dados
-- **PostgreSQL**
+- **PostgreSQL 15**
 
 ### Frontend
-- **React**
-  - Vite (Build tool e ambiente de desenvolvimento)
-  - Tailwind CSS (Framework CSS utilitário)
+- **React.js**
+  - Vite (ambiente e build)
+  - Tailwind CSS (estilização utilitária)
 
-## Funcionalidades Principais
+---
 
-- Gestão financeira completa
-- Conciliação bancária
-- Geração de relatórios oficiais
-- Interface intuitiva e responsiva
+## 🚀 Como Executar o Projeto
 
-## Configuração do Ambiente Virtual (Windows/PowerShell)
+### ✅ Recomendado: Docker Compose
 
-Para criar e ativar o ambiente virtual Python do projeto:
+Roda a aplicação **com um único comando**, sem necessidade de instalar dependências Python ou configurar ambiente virtual.
 
-1. Certifique-se de que o Python 3.11+ está instalado (versão atual: Python 3.13.3):  
-   ```powershell
-   python --version
-   ```
+#### 🔧 Pré-requisitos
 
-2. Crie o ambiente virtual dentro da pasta do projeto:  
-   ```powershell
-   py -3 -m venv .venv
-   ```
+- [Docker Desktop](https://www.docker.com/products/docker-desktop) instalado e em execução
+- Arquivo `.env` na raiz do projeto com as seguintes variáveis:
 
-3. Ative o ambiente virtual:  
-   ```powershell
-   .venv\Scripts\Activate.ps1
-   ```
+```env
+POSTGRES_DB=lsj
+POSTGRES_USER=lsj
+POSTGRES_PASSWORD=lsj123
+DATABASE_URL=postgresql+psycopg://lsj:lsj123@db:5432/lsj
+ENV=dev
+SECRET_KEY=changeme
+DEBUG=true
+```
 
-4. Valide que o ambiente está ativo (o prompt exibirá `(.venv)` no início) e que o `pip` está vinculado ao venv:  
-   ```powershell
-   python -m pip -V
-   ```
+> ⚠️ Nunca use valores reais em `.env` no repositório. Este é apenas um exemplo de desenvolvimento local.
 
-> Observação: a pasta `.venv` **não deve ser versionada** (já está listada no `.gitignore`).
+#### ▶️ Iniciando o ambiente
 
-## Instalação de dependências (Windows)
+Na raiz do projeto, execute:
 
-Após ativar o ambiente virtual, instale as dependências do backend:
+```bash
+docker-compose up --build
+```
 
-1. Navegue até a pasta do projeto:
-   ```powershell
-   cd C:\caminho\para\lsj
-   ```
+Esse comando irá:
+- Construir a imagem da API a partir do `Dockerfile`
+- Subir o banco PostgreSQL com volume persistente
+- Expor a API em `http://localhost:8000`
 
-2. Instale as dependências do backend:
-   ```powershell
-   pip install -r backend\requirements.txt
-   ```
+#### 🌐 Acessos locais
 
-3. Verifique se as dependências foram instaladas corretamente:
-   ```powershell
-   pip list
-   ```
+| Recurso       | URL                                 |
+|---------------|--------------------------------------|
+| API FastAPI   | http://localhost:8000               |
+| Swagger UI    | http://localhost:8000/docs          |
+| ReDoc         | http://localhost:8000/redoc         |
+| PostgreSQL    | `localhost:5432` (user: `lsj`, pass: `lsj123`) |
 
-## Executando o Backend
+#### ⏹ Parando o ambiente
 
-Para iniciar o servidor de desenvolvimento com hot-reload:
+Pressione `CTRL + C` no terminal ou execute:
 
-1. Certifique-se de que o ambiente virtual está ativado
+```bash
+docker-compose down
+```
 
-2. Execute o servidor Uvicorn a partir da raiz do projeto:
-   ```powershell
-   uvicorn app.main:app --reload --port 8000 --app-dir backend
-   ```
+> O volume `pgdata` mantém os dados do banco mesmo após `down`.
 
-3. Acesse a API em [http://localhost:8000](http://localhost:8000)
+---
 
-4. A documentação interativa está disponível em:
-   - Swagger UI: [http://localhost:8000/docs](http://localhost:8000/docs)
-   - ReDoc: [http://localhost:8000/redoc](http://localhost:8000/redoc)
+### 🧪 Alternativo: Execução com Ambiente Virtual (Windows)
 
+Recomendado apenas para desenvolvedores que preferem não usar Docker.
 
-## 🐳 Execução com Docker
+#### 1. Criar e ativar o ambiente virtual
 
-Este projeto oferece uma maneira alternativa de rodar o backend usando Docker, ideal para padronizar o ambiente de desenvolvimento entre diferentes máquinas.
+```powershell
+py -3 -m venv .venv
+.venv\Scripts\Activate.ps1
+```
 
-### 🔧 Pré-requisitos
+Verifique se o ambiente está ativo:
 
-- Docker Desktop instalado e rodando
-- Terminal com suporte a comandos `docker`
+```powershell
+python -m pip -V
+```
 
-### 🚀 Passo a passo
+#### 2. Instalar dependências
 
-1. Acesse a pasta `backend`:
-   ```bash
-   cd backend
-   ```
+```powershell
+pip install -r backend\requirements.txt
+```
 
-2. Construa a imagem:
-   ```bash
-   docker build -t lsj-backend-dev .
-   ```
+#### 3. Iniciar o servidor local
 
-3. Execute o container:
-   ```bash
-   docker run -it --rm -p 8000:8000 -v $(pwd)/app:/app/app lsj-backend-dev uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
-   ```
+```powershell
+uvicorn app.main:app --reload --port 8000 --app-dir backend
+```
 
+---
 
+## ⚙️ Variáveis de Ambiente (.env)
+
+| Variável         | Descrição                                |
+|------------------|--------------------------------------------|
+| POSTGRES_DB      | Nome do banco de dados                     |
+| POSTGRES_USER    | Usuário do banco                           |
+| POSTGRES_PASSWORD| Senha do banco                             |
+| DATABASE_URL     | URL completa de conexão                    |
+| ENV              | Ambiente de execução (`dev`, `prod`, etc) |
+| SECRET_KEY       | Chave secreta para autenticação JWT        |
+| DEBUG            | Modo debug (`true` ou `false`)             |
+
+---
+
+## 📄 Documentação da API
+
+- Swagger UI: [`/docs`](http://localhost:8000/docs)
+- ReDoc: [`/redoc`](http://localhost:8000/redoc)
+
+---
+
+## 🧠 Observações e Boas Práticas
+
+- O diretório `.venv/` está no `.gitignore` e não deve ser versionado
+- O volume `pgdata` do Docker mantém os dados entre execuções
+- As configurações de produção devem usar variáveis seguras via `.env` ou `secrets`
+
+---
+
+Feito com 💙 para o Lar de São José
