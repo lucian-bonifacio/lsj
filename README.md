@@ -2,7 +2,6 @@
 
 Sistema completo para administração financeira do **Lar de São José**, com foco em **conciliação bancária**, **validação automatizada** e **emissão de relatórios oficiais**. Desenvolvido com tecnologias modernas, é uma solução robusta e escalável para o setor financeiro.
 
----
 
 ## 📦 Tecnologias Utilizadas
 
@@ -21,7 +20,6 @@ Sistema completo para administração financeira do **Lar de São José**, com f
   - Vite (ambiente e build)
   - Tailwind CSS (estilização utilitária)
 
----
 
 ## 🚀 Como Executar o Projeto
 
@@ -78,7 +76,6 @@ docker-compose down
 
 > O volume `pgdata` mantém os dados do banco mesmo após `down`.
 
----
 
 ### 🧪 Alternativo: Execução com Ambiente Virtual (Windows)
 
@@ -109,7 +106,6 @@ pip install -r backend\requirements.txt
 uvicorn app.main:app --reload --port 8000 --app-dir backend
 ```
 
----
 
 ## ⚙️ Variáveis de Ambiente (.env)
 
@@ -123,14 +119,12 @@ uvicorn app.main:app --reload --port 8000 --app-dir backend
 | SECRET_KEY       | Chave secreta para autenticação JWT        |
 | DEBUG            | Modo debug (`true` ou `false`)             |
 
----
 
 ## 📄 Documentação da API
 
 - Swagger UI: [`/docs`](http://localhost:8000/docs)
 - ReDoc: [`/redoc`](http://localhost:8000/redoc)
 
----
 
 ## 🧠 Observações e Boas Práticas
 
