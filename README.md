@@ -56,6 +56,9 @@ Esse comando irá:
 - Construir a imagem da API a partir do `Dockerfile`
 - Subir o banco PostgreSQL com volume persistente
 - Expor a API em `http://localhost:8000`
+- Ativar **hot-reload** automático para desenvolvimento
+
+> 🔥 **Hot-reload ativo**: Alterações em arquivos `.py` são detectadas automaticamente e reiniciam o servidor sem necessidade de rebuild do container.
 
 #### 🌐 Acessos locais
 
@@ -65,6 +68,22 @@ Esse comando irá:
 | Swagger UI    | http://localhost:8000/docs          |
 | ReDoc         | http://localhost:8000/redoc         |
 | PostgreSQL    | `localhost:5432` (user: `lsj`, pass: `lsj123`) |
+
+#### 🔥 Desenvolvimento com Hot-reload
+
+O ambiente está configurado para **hot-reload automático**:
+
+- Qualquer alteração em arquivos `.py` no diretório `backend/` é detectada automaticamente
+- O servidor uvicorn reinicia automaticamente sem perder a conexão
+- Não é necessário rebuild do container para mudanças no código
+- O volume `./backend:/app` mapeia o código local para dentro do container
+
+**Exemplo de workflow:**
+1. Execute `docker-compose up --build`
+2. Edite qualquer arquivo em `backend/app/`
+3. Salve o arquivo
+4. Observe no terminal: `WatchFiles detected changes... Reloading...`
+5. A API é automaticamente reiniciada com as novas alterações
 
 #### ⏹ Parando o ambiente
 

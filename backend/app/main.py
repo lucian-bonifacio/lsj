@@ -42,7 +42,7 @@ async def health_check():
 async def root():
     """Endpoint raiz da API"""
     return {
-        "message": "Olá, mundo!",
+        "message": "Somos lindos",
         "docs": "/docs",  # Link para a documentação Swagger
         "redoc": "/redoc"  # Link para a documentação ReDoc
     }
