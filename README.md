@@ -126,17 +126,31 @@ uvicorn app.main:app --reload --port 8000 --app-dir backend
 ```
 
 
-## ⚙️ Variáveis de Ambiente (.env)
+## ⚙️ Variáveis de Ambiente
 
-| Variável         | Descrição                                |
-|------------------|--------------------------------------------|
-| POSTGRES_DB      | Nome do banco de dados                     |
-| POSTGRES_USER    | Usuário do banco                           |
-| POSTGRES_PASSWORD| Senha do banco                             |
-| DATABASE_URL     | URL completa de conexão                    |
-| ENV              | Ambiente de execução (`dev`, `prod`, etc) |
-| SECRET_KEY       | Chave secreta para autenticação JWT        |
-| DEBUG            | Modo debug (`true` ou `false`)             |
+### Configuração do Backend
+
+Para configurar o backend, copie o arquivo de exemplo:
+
+```bash
+cp backend/.env.example backend/.env
+```
+
+> ⚠️ **Importante**: O arquivo `.env` está no `.gitignore` e não deve ser versionado por conter credenciais sensíveis.
+
+#### Variáveis de Ambiente (Backend)
+
+| Variável     | Descrição                            | Exemplo                                         |
+|--------------|--------------------------------------|-------------------------------------------------|
+| DB_HOST      | Host do banco de dados               | `postgres` (Docker) ou `localhost`              |
+| DB_PORT      | Porta do PostgreSQL                  | `5432`                                          |
+| DB_USER      | Usuário do banco                     | `lsj`                                           |
+| DB_PASSWORD  | Senha do banco                       | `lsj123`                                        |
+| DB_NAME      | Nome do banco de dados               | `lsj`                                           |
+| DB_POOL_SIZE | Número de conexões no pool           | `10`                                            |
+| DB_ECHO      | Log de queries SQL (desenvolvimento) | `false` (prod) ou `true` (dev)                  |
+| DB_SSLMODE   | Modo SSL para conexão                | `prefer`, `require`, `disable`                  |
+| DATABASE_URL | URL completa de conexão              | `postgresql+psycopg://user:pass@host:port/db`   |
 
 
 ## 📄 Documentação da API
